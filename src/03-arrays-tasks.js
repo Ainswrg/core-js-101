@@ -205,18 +205,13 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-  let sum = 0;
-  return arr.reduce((acc, el) => {
-    if (el === 0) {
-      acc.push(0);
-    } else {
-      sum += el;
-      acc.push(sum);
+  return arr.reduce((acc, item, index) => {
+    if (index === 0) {
+      return [item];
     }
-    return acc;
+    return [...acc, acc[index - 1] + item];
   }, []);
 }
-
 /**
  * Returns every second item from the specified array:
  *
